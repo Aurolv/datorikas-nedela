@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viena darba nedēļa Datorikas nodaļas studenta dzīvē</title>
+
+  <style>
+    :root {
+      --primary: #27439A;
+      --secondary: #427FE0;
+      --accent: #29C768;
+      --bg: #F7F9FC;
+      --text: #111827;
+      --card: #FFFFFF;
+      --muted: #5F6B7A;
+      --border: #DDE3EC;
+    }
+
+    body.dark {
+      --primary: #4D7CFE;
+      --secondary: #22B8CF;
+      --accent: #28C76F;
+      --bg: #0A0F1C;
+      --text: #F5F7FA;
+      --card: #111827;
+      --muted: #C8D0DD;
+      --border: #243149;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: 0.3s;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 249, 252, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    body.dark header {
+      background: rgba(10, 15, 28, 0.9);
+    }
+
+    .header-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+    }
+
+    .logo-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--secondary);
+    }
+
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--secondary);
+    }
+
+    .hero {
+      padding: 90px 0;
+      background:
+        radial-gradient(circle at top right, rgba(66, 127, 224, 0.22), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(41, 199, 104, 0.18), transparent 30%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--primary);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 16px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-image {
+      height: 420px;
+      border-radius: 22px;
+      background:
+        linear-gradient(rgba(10, 15, 28, 0.25), rgba(10, 15, 28, 0.65)),
+        url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+      color: white;
+    }
+
+    .hero-image h2 {
+      font-size: 30px;
+      line-height: 1.15;
+      margin-top: 6px;
+    }
+
+    section {
+      padding: 82px 0;
+    }
+
+    .section-top {
+      max-width: 760px;
+      margin-bottom: 42px;
+    }
+
+    .section-label {
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+
+    .section-top p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .about-text p + p {
+      margin-top: 18px;
+    }
+
+    .week {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .number {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .card:nth-child(2) .number {
+      background: var(--secondary);
+    }
+
+    .card:nth-child(3) .number {
+      background: var(--accent);
+    }
+
+    .card:nth-child(4) .number {
+      background: #1B2C5A;
+    }
+
+    .card:nth-child(5) .number {
+      background: #111827;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .card strong {
+      display: block;
+      color: var(--secondary);
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .format {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: rgba(66, 127, 224, 0.12);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .icon-box svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    body.dark .icon-box {
+      background: rgba(77, 124, 254, 0.16);
+      color: var(--primary);
+    }
+
+    .format h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .format p {
+      color: var(--muted);
+    }
+
+    .tools {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .tools .section-label,
+    .tools p {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .tool {
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .tool h3 {
+      margin-bottom: 8px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      height: 210px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .link-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      font-weight: 800;
+      color: var(--primary);
+      transition: 0.2s;
+    }
+
+    .link-card:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-4px);
+    }
+
+    footer {
+      background: var(--text);
+      color: var(--bg);
+      padding: 42px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      color: rgba(247, 249, 252, 0.72);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 980px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .formats-grid,
+      .tools-grid,
+      .gallery-grid,
+      .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-image {
+        height: 340px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header-inner {
+        height: auto;
+        padding: 14px 0;
+      }
+
+      .logo span {
+        display: none;
+      }
+
+      .theme-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      section,
+      .hero {
+        padding: 56px 0;
+      }
+
+      .cards,
+      .formats-grid,
+      .tools-grid,
+      .gallery-grid,
+      .links-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        height: 280px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header-inner">
+      <a href="#sakums" class="logo">
+        <div class="logo-box">DF</div>
+        <span>Datorikas nedēļa</span>
+      </a>
+
+      <nav>
+        <a href="#sakums">Sākums</a>
+        <a href="#studijas">Studijas</a>
+        <a href="#nedela">Nedēļa</a>
+        <a href="#riki">Rīki</a>
+        <a href="#galerija">Galerija</a>
+        <a href="#kontakti">Kontakti</a>
+      </nav>
+
+      <button class="theme-btn" onclick="toggleTheme()">Gaišs / Tumšs</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="sakums">
+      <div class="container hero-grid">
+        <div>
+
+          <h1>
+            Viena darba nedēļa
+            <span>Datorikas nodaļas</span>
+            studenta dzīvē
+          </h1>
+
+          <p>
+            Mājaslapas koncepts par piecām studiju dienām, lekcijām,
+            laboratorijas darbiem, programmēšanas praksi, grupu projektiem
+            un studenta brīvo laiku.
+          </p>
+
+          <div class="buttons">
+            <a href="#nedela" class="btn btn-primary">Apskatīt nedēļu</a>
+            <a href="#galerija" class="btn btn-secondary">Skatīt galeriju</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-image">
+            <div>
+              <p>Datorikas studijas</p>
+              <h2>Lekcijas. Kods. Projekti.</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="studijas">
+      <div class="container about-grid">
+        <div>
+          <p class="section-label">Par vietni</p>
+          <h2>Kā izskatās studenta nedēļa?</h2>
+        </div>
+
+        <div class="about-text">
+          <p>
+            Šī mājaslapa ir veidota kā vizuāls stāsts par Datorikas nodaļas
+            studenta darba nedēļu. Tajā apkopotas galvenās studiju aktivitātes:
+            lekcijas, praktiskie darbi, programmēšana, komandas darbs un brīvais laiks.
+          </p>
+
+          <p>
+            Vietnes mērķis ir parādīt studenta ikdienu saprotamā, strukturētā
+            un vizuāli pievilcīgā veidā, izmantojot modernu krāsu paleti,
+            vienkāršu navigāciju un skaidru satura hierarhiju.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="week" id="nedela">
+      <div class="container">
+        <div class="section-top">
+          <p class="section-label">Nedēļas pārskats</p>
+          <h2>No pirmdienas līdz piektdienai</h2>
+          <p>
+            Katra diena atspoguļo citu studiju procesa daļu, no teorijas
+            līdz praktiskai izstrādei.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="number">1</div>
+            <h3>Pirmdiena</h3>
+            <strong>Lekcijas un laboratorijas</strong>
+            <p>
+              Studenti apgūst teoriju lekcijās un vēlāk pielieto zināšanas
+              laboratorijas darbos.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">2</div>
+            <h3>Otrdiena</h3>
+            <strong>Programmēšanas prakse</strong>
+            <p>
+              Dienas centrā ir kods, kļūdu labošana, risinājumu testēšana
+              un praktiskās prasmes.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">3</div>
+            <h3>Trešdiena</h3>
+            <strong>Grupu projekti</strong>
+            <p>
+              Studenti plāno uzdevumus, sadarbojas komandā un kopīgi strādā
+              pie projekta izstrādes.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">4</div>
+            <h3>Ceturtdiena</h3>
+            <strong>Mācības un uzdevumi</strong>
+            <p>
+              Laiks patstāvīgām mācībām, mājasdarbiem un gatavošanās
+              pārbaudījumiem.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">5</div>
+            <h3>Piektdiena</h3>
+            <strong>Brīvais laiks</strong>
+            <p>
+              Studenti līdzsvaro mācības ar atpūtu, vaļaspriekiem
+              un sociālo dzīvi.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-top">
+          <p class="section-label">Studiju formāti</p>
+          <h2>Mācības nav tikai lekcijas</h2>
+          <p>
+            Datorikas studenta ikdiena sastāv no vairākiem mācību formātiem,
+            kas kopā veido pilnvērtīgu studiju procesu.
+          </p>
+        </div>
+
+        <div class="formats-grid">
+          <div class="format">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path>
+              </svg>
+            </div>
+            <h3>Lekcijas</h3>
+            <p>
+              Teorētiskās zināšanas, kas vēlāk tiek izmantotas praktiskajos
+              darbos un projektos.
+            </p>
+          </div>
+
+          <div class="format">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10 2v7.31"></path>
+                <path d="M14 2v7.31"></path>
+                <path d="M8.5 9h7"></path>
+                <path d="M7 9l-4.5 9A3 3 0 0 0 5.2 22h13.6a3 3 0 0 0 2.7-4L17 9"></path>
+              </svg>
+            </div>
+            <h3>Laboratorijas</h3>
+            <p>
+              Praktiski uzdevumi, eksperimenti, rezultātu analīze un tehnisko
+              prasmju attīstīšana.
+            </p>
+          </div>
+
+          <div class="format">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                <path d="M8 20h8"></path>
+                <path d="M12 16v4"></path>
+                <path d="M8 10l2 2l-2 2"></path>
+                <path d="M13 14h3"></path>
+              </svg>
+            </div>
+            <h3>Patstāvīgais darbs</h3>
+            <p>
+              Mājasdarbu izpilde, materiālu lasīšana un gatavošanās
+              pārbaudījumiem.
+            </p>
+          </div>
+
+          <div class="format">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16 11a4 4 0 1 0-8 0"></path>
+                <path d="M3 21a7 7 0 0 1 18 0"></path>
+                <path d="M17 8a3 3 0 0 1 4 2.8"></path>
+                <path d="M7 8a3 3 0 0 0-4 2.8"></path>
+              </svg>
+            </div>
+            <h3>Komandas projekti</h3>
+            <p>
+              Sadarbība, uzdevumu sadale, komunikācija un kopīga risinājumu
+              izstrāde.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools" id="riki">
+      <div class="container">
+        <div class="section-top">
+          <p class="section-label">Digitālie rīki</p>
+          <h2>Tehnoloģijas studiju procesā</h2>
+          <p>
+            Datorikas nodaļas studenta ikdienā svarīga loma ir digitālajiem
+            rīkiem. Tie palīdz rakstīt kodu, sazināties ar komandas biedriem,
+            plānot uzdevumus un iesniegt darbus elektroniski.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <div class="tool">
+            <h3>Koda redaktori</h3>
+            <p>Visual Studio Code, IntelliJ IDEA un citas izstrādes vides.</p>
+          </div>
+
+          <div class="tool">
+            <h3>E-studiju vide</h3>
+            <p>Mācību materiālu saņemšanai un darbu iesniegšanai.</p>
+          </div>
+
+          <div class="tool">
+            <h3>Saziņas rīki</h3>
+            <p>Komunikācijai ar kursabiedriem un pasniedzējiem.</p>
+          </div>
+
+          <div class="tool">
+            <h3>Plānošana</h3>
+            <p>Termiņu, uzdevumu un projekta darbu organizēšanai.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galerija">
+      <div class="container">
+        <div class="section-top">
+          <p class="section-label">Galerija</p>
+          <h2>Studenta ikdiena attēlos</h2>
+          <p>
+            Attēli palīdz vizuāli parādīt studenta ikdienu: mācību vidi,
+            tehnoloģijas, komandas darbu un universitātes atmosfēru.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=900&q=80"
+              alt="Universitātes auditorija"
+            />
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80"
+              alt="Programmēšanas kods"
+            />
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
+              alt="Students pie datora"
+            />
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80"
+              alt="Komandas darbs"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-top">
+          <p class="section-label">Noderīgas saites</p>
+          <h2>Kur meklēt informāciju?</h2>
+          <p>
+            Šajā sadaļā var ievietot saites uz universitāti, fakultāti,
+            e-studiju vidi un citiem studentam noderīgiem resursiem.
+          </p>
+        </div>
+
+        <div class="links-grid">
+          <a href="https://www.lu.lv/" class="link-card">Latvijas Universitāte</a>
+          <a href="https://www.lu.lv/studijas/studiju-programmas/bakalaura-limena-studijas/datorzinatnes/Bakalaura" class="link-card">Datorikas fakultāte</a>
+          <a href="https://e-studijas.lu.lv/" class="link-card">E-studijas</a>
+          <a href="https://www.biblioteka.lu.lv/" class="link-card">Bibliotēka</a>
+          <a href="https://www.lu.lv/studijas/studentu-padome/" class="link-card">Studentu padome</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontakti">
+    <div class="container footer-inner">
+      <div>
+        <h3>Viena darba nedēļa Datorikas nodaļas studenta dzīvē</h3>
+        <p>Vietne izstrādāta studiju darba ietvaros.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
+</html>
